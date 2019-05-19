@@ -11,12 +11,17 @@ function updateWorld(rvx, rvy, rvz) {
 	worldElevation += rvx;
 	worldRoll += rvz;
 
-	// compute the rotation matrix
-	var out =  utils.multiplyMatrices(utils.multiplyMatrices(
-					utils.MakeRotateYMatrix(worldAngle),
-					utils.MakeRotateXMatrix(worldElevation)),
-					utils.MakeRotateZMatrix(worldRoll));			   
+	out = Quaternion.fromEuler(
+						convertAngle(worldRoll),
+						convertAngle(worldElevation), 
+						convertAngle(worldAngle), 
+						"ZXY")
+						.conjugate()
+						.toMatrix4();
 
 	return out;
 }
 
+function convertAngle(worldAngle){
+	return worldAngle * Math.PI / 180;
+}
