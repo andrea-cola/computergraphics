@@ -95,7 +95,7 @@ function buildGeometry() {
 	var color5 = [1.0, 0.0, 1.0];
 
 	var r = 3;
-	var total = 20;
+	var total = 50;
 	var lat_step = 2 * Math.PI / total;
 	var lon_step = Math.PI / total;
 
